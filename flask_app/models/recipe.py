@@ -30,7 +30,8 @@ class Recipe:
         result = connectToMySQL(cls.DB).query_db(query)
         all_recipes = []
         for row in result:
-            recipe = cls(row)
+            recipe = cls(row) #this stores one row a time
+            print(recipe)
             user_data = {
                 "id" : row["users.id"],
                 "first_name" : row["first_name"],
@@ -41,7 +42,7 @@ class Recipe:
                 "updated_at" : row["users.updated_at"]
             }
             recipe.user = user.User(user_data) #this is similar to creating a key in recipe
-            print(recipe, recipe.user)
+            # print(recipe, recipe.user)
             all_recipes.append(recipe)
         return all_recipes 
     
